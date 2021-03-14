@@ -46,7 +46,7 @@ sub_get() {
             sed -nE 's/^WebUI\\Port=([0-9]+)$/\1/p' "${CONFIG}"
             ;;
         wireguard_config)
-            readlink -f "${DEFAULT_WG_CONFIG}"
+            readlink -f "${DEFAULT_WG_CONFIG}" || echo "${DEFAULT_WG_CONFIG}"
             ;;
         *)
             unknown_option

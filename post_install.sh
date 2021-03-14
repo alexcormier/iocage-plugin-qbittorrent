@@ -17,6 +17,7 @@ Connection\\Interface=${WG_IFACE}
 Connection\\InterfaceName=Wireguard
 WebUI\\Port=${port}
 EOF
+    chown -R qbittorrent:qbittorrent "${CONF_DIR}"
 fi
 
 sysrc wireguard_enable="YES"
