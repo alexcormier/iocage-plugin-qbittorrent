@@ -1,0 +1,78 @@
+#!/bin/sh
+
+source /root/vars
+
+NAME="$(basename $0)"
+
+unknown_option() {
+    echo "Unknown option" >&2
+    exit 1
+}
+
+sub_help() {
+    echo "Usage: ${NAME} <subcommand> [options]"
+    echo
+    echo "Subcommands:"
+    echo "    start     Start services"
+    echo "    stop      Stop services"
+    echo "    restart   Restart services"
+    echo "    get       Get the value of a property"
+    echo "    set       Set the value of a property"
+    echo
+}
+
+sub_start() {
+    service wireguard start
+    service qbittorrent start
+}
+
+sub_stop() {
+    service qbittorrent stop
+    service wireguard stop
+}
+
+sub_restart() {
+    service qbittorrent stop
+    service wireguard restart
+    service qbittorrent start
+}
+
+sub_get() {
+    case "${1}" in
+        port)
+            sed -nE 's/^WebUI\\Port=([0-9]+)$/\1/p' "${CONFIG}"
+            ;;
+        wireguard_config)
+            readlink -f "${DEFAULT_WG_CONFIG}"
+            ;;
+        *)
+            unknown_option
+            ;;
+    esac
+}
+
+sub_set() {
+    case "${1}" in
+        port)
+            sed -i '' 's/^WebUI\\Port=.*$/WebUI\\Port='${2}'/' "${CONFIG}"
+            ;;
+        wireguard_config)
+            [ "${2}" != "${DEFAULT_WG_CONFIG}" ] && ln -sf "${$2}" "${DEFAULT_WG_CONFIG}"
+            ;;
+        *)
+            unknown_option
+            ;;
+    esac
+}
+
+subcommand=$1
+case "${subcommand}" in
+    "" | "help" | "-h" | "--help")
+        sub_help
+        ;;
+    *)
+        shift
+        sub_${subcommand} "$@"
+        [ $? = 127 ] && unknown_option
+        ;;
+esac

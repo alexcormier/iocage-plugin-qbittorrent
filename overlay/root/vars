@@ -1,0 +1,6 @@
+#!/bin/sh
+
+CONFIG="/var/db/qbittorrent/conf/qBittorrent/config/qBittorrent.conf"
+WG_IFACE="wg0"
+DEFAULT_WG_CONFIG="/usr/local/etc/wireguard/${WG_IFACE}"
+

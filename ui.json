@@ -1,0 +1,6 @@
+{
+    "adminportal": "http://%%IP%%:%%PORT%%",
+    "adminportal_placeholders": {
+        "%%PORT%%": "port"
+    }
+}

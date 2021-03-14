@@ -1,0 +1,22 @@
+{
+    "servicerestart": "/usr/local/bin/plugin restart",
+    "serviceget": "/usr/local/bin/plugin get",
+    "serviceset": "/usr/local/bin/plugin set",
+    "options": {
+        "port": {
+            "type": "int",
+            "name": "Port",
+            "description": "Port on which qBittorrent will listen",
+            "range": "1024-32000",
+            "default": "8080",
+            "requirerestart": true
+        },
+        "wireguard_config": {
+            "type": "string",
+            "name": "Wireguard Configuration File",
+            "description": "Path the the configuration file for the Wireguard interface",
+            "default": "/usr/local/etc/wireguard/wg0.conf",
+            "requirerestart": true
+        }
+    }
+}
