@@ -1,6 +1,6 @@
 #!/bin/sh
 
-source /root/vars
+. /root/vars
 
 # make sure qBittorrent only uses the wireguard interface
 sed -i '' 's/^Connection\\Interface=.*$/Connection\\Interface='${WG_IFACE}'/' "${CONFIG}"
