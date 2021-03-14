@@ -79,3 +79,5 @@ case "${subcommand}" in
         [ $? = 127 ] && unknown_option
         ;;
 esac
+
+exit 0

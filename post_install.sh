@@ -1,8 +1,5 @@
 #!/bin/sh
 
-set -x
-set -e
-
 . /root/vars
 
 # make sure qBittorrent only uses the wireguard interface
