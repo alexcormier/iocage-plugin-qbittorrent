@@ -7,6 +7,7 @@ if [ -f "${CONFIG}" ]; then
     sed -i '' 's/^Connection\\Interface=.*$/Connection\\Interface='${WG_IFACE}'/' "${CONFIG}"
     sed -i '' 's/^Connection\\InterfaceName=.*$/Connection\\InterfaceName=Wireguard/' "${CONFIG}"
 else
+    mkdir -p "$(dirname "${CONFIG}")"
     cat > "${CONFIG}" <<EOF
 [Preferences]
 Connection\\Interface=${WG_IFACE}

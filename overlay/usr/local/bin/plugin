@@ -22,8 +22,13 @@ sub_help() {
 }
 
 sub_start() {
-    service wireguard start
-    service qbittorrent start
+    if [ -f "${DEFAULT_WG_CONFIG}" ]; then
+        service wireguard start
+        service qbittorrent start
+    else
+        echo "Cannot start services: Wireguard config does not exist."
+        echo "Place your Wireguard config at $("${NAME}" get wireguard_config)."
+    fi
 }
 
 sub_stop() {
@@ -32,9 +37,8 @@ sub_stop() {
 }
 
 sub_restart() {
-    service qbittorrent stop
-    service wireguard restart
-    service qbittorrent start
+    sub_stop
+    sub_start
 }
 
 sub_get() {
