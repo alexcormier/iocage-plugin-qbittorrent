@@ -1,7 +1,7 @@
 {
     "servicerestart": "/usr/local/bin/plugin restart",
-    "serviceget": "/usr/local/bin/plugin get",
-    "serviceset": "/usr/local/bin/plugin set",
+    "serviceget": "/usr/local/bin/pluginget",
+    "serviceset": "/usr/local/bin/pluginset",
     "options": {
         "port": {
             "type": "int",
