@@ -27,7 +27,6 @@ sub_start() {
         service qbittorrent start
     else
         echo "Cannot start services: Wireguard config does not exist."
-        echo "Place your Wireguard config at $("${NAME}" get wireguard_config)."
     fi
 }
 
