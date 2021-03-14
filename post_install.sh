@@ -2,6 +2,9 @@
 
 . /root/vars
 
+: ${port="8080"}
+: ${wireguard_config="${DEFAULT_WG_CONFIG}"}
+
 # make sure qBittorrent only uses the wireguard interface
 if [ -f "${CONFIG}" ]; then
     sed -i '' 's/^Connection\\Interface=.*$/Connection\\Interface='${WG_IFACE}'/' "${CONFIG}"
